@@ -9,4 +9,4 @@
 
 
 ## Product Canvas:
-- [Product Canvas Google Doc] (https://github.com/build-week-guidr-2019/guidr-backend.git)
+- [Product Canvas Google Doc](https://docs.google.com/document/d/1YZZ4W84pGwRAVCcgVc9gUspmeyN32hWiFjJXKYRbBco/edit?usp=sharing)
