@@ -2,43 +2,47 @@ exports.up = function(knex) {
     return (knex.schema
       .createTable('guides', tbl => {
           tbl.increments('id');
-          tbl.string('name', 128).notNullable().unique();
+          tbl.string('username', 255).unique().notNullable();
           tbl.string('password').notNullable();
-          //missing tagline, age, experience,
-
+          tbl.string('tagline', 128);
+          tbl.integer('age');
+          tbl.integer('experience');
       })
       .createTable('trips', tbl => {
           tbl.increments('id');
           tbl.integer('guide_id')
               .unsigned()
               .notNullable()
-              .references('id').inTable('users');
+              .references('id').inTable('guides')
+              .onDelete('RESTRICT')
+              .onUpdate('CASCADE');
           tbl.string('title', 128).notNullable();
           tbl.string('description').notNullable();
-          tbl.integer('type_id')
+          tbl.boolean('professional').notNullable();
+          tbl.integer('type_id')            
              .unsigned()
              .notNullable()
-             .references('id').inTable('types');
+             .references('id').inTable('types')
+             .onDelete('RESTRICT')
+             .onUpdate('CASCADE');;
           tbl.integer('duration')
              .unsigned()
              .notNullable();
-             
-           //MISSING DATE
+          tbl.date('date').notNullable();   
       })
 
       .createTable('types', tbl => {
           tbl.increments('id');
-          tbl.string('type')
-              .notNullable()
-          tbl.string('description', 128)
+          tbl.string('type' , 100)
+              .notNullable();
+          tbl.string('description', 128);
       })
-
-      );
+    );
   };
   
   exports.down = function(knex) {
     return knex.schema
-      .dropTableIfExists('types')
       .dropTableIfExists('trips')
+      .dropTableIfExists('types')
       .dropTableIfExists('guides')
   };
