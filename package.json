@@ -1,7 +1,7 @@
 {
-  "name": "nodeauth-challenge",
+  "name": "build-guidr",
   "version": "1.0.0",
-  "description": "Authentication Sprint Challenge",
+  "description": "Guidr Backend",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
@@ -13,8 +13,8 @@
     "url": "git+https://github.com/LambdaSchool/Sprint-Challenge-Authentication.git"
   },
   "keywords": [],
-  "author": "Lambda School",
-  "license": "ISC",
+  "author": "Arthur Lei and Ernesto Pena",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/LambdaSchool/Sprint-Challenge-Authentication/issues"
   },
