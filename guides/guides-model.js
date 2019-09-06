@@ -15,9 +15,9 @@ function find() {
   return db('guides');
 }
 
-async function findBy(filter) {
+function findBy(filter) {
   
-  return await db('guides').where('username', filter);
+  return db('guides').where(filter);
 }
 
 //used for endpoint where it's a POST for /api/guides

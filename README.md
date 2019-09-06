@@ -14,7 +14,7 @@
 `/api/register`--> Registers
 
 ## Guides/Users Endpoints 
-`/api/guides` -->
+`/api/guides` --> post
     `/:id` -->the guide id, put, get 
     `/:id/trips`--> guide's trips (gets trips)
 

@@ -30,6 +30,11 @@ router.get('/:id', validGuideID, async (req,res) => {
   }
 })
 
+//get the trips for a guide given ID
+
+
+
+
 //POST guide 
 
 router.post('/', validGuide, async (req,res) => {
@@ -62,6 +67,7 @@ router.put('/:id', validGuideID, async (req, res) =>{
     res.status(403).json({message:"Cannot update ", errMessage:err})
   }
 });
+
 
 
 //Middleware 
