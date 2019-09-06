@@ -30,6 +30,18 @@ router.get('/:id', validTypeID, async (req,res) => {
 
 
 //POST type 
+router.post('/', validType, async (req,res) => {
+    try {
+      let newType = req.body;
+    
+      const newTypeAdded = await Types.add(newType);
+      
+      res.status(201).json(newTypeAdded);
+    } catch (err){
+      res.status(403).json({message:"Could not add type", errMessage:err})
+    }
+  })
+
 
 
 //Middleware for Validation
@@ -50,6 +62,8 @@ async function validTypeID (req, res, next){
 }
 
 //NEEDED validate whether type has all the correct parameters before it is added
-
+async function validType (req, res, next){
+    next();
+}
 
 module.exports = router;

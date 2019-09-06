@@ -30,6 +30,17 @@ router.get('/:id', validTripID, async (req,res) => {
 
 
 //POST trip 
+router.post('/', validTrip, async (req,res) => {
+    try {
+      let newTrip = req.body;
+    
+      const newTripAdded = await Trips.add(newTrip);
+      
+      res.status(201).json(newTripAdded);
+    } catch (err){
+      res.status(403).json({message:"Could not add trip", errMessage:err})
+    }
+  })
 
 
 
@@ -53,7 +64,7 @@ router.delete('/:id', validTripID, async (req,res) => {
     try {
         let tripID = req.params.id;
         const deletionAttempt = await Trips.remove(tripID);
-        res.status(200).json({message:"Trip deleted successfully"})
+        res.status(200).json({message:"Trip deleted successfully", recordsDeleted: deletionAttempt})
     } catch(err){
         res.status(403).json({message:"Cannot delete", errMessage:err})
     }
@@ -78,6 +89,11 @@ async function validTripID (req, res, next){
   }
 }
 
+
+
 //NEEDED validate whether trip (to be added) has all the correct parameters
+async function validTrip (req, res, next){
+    next();
+}
 
 module.exports = router;
