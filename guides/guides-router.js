@@ -47,6 +47,22 @@ router.post('/', validGuide, async (req,res) => {
   }
 })
 
+//PUT endpoint only tagline, age, experience 
+
+router.put('/:id', validGuideID, async (req, res) =>{
+  try {
+    let guideInfo = req.body;
+    let guideID = req.params.id;
+    
+    const updatedGuide = await Guides.update(guideID, guideInfo);
+
+    res.status(201).json(updatedGuide);
+
+  } catch(err) {
+    res.status(403).json({message:"Cannot update ", errMessage:err})
+  }
+});
+
 
 //Middleware 
 
@@ -76,7 +92,7 @@ async function validGuideID (req, res, next){
   const {id} = req.params;
   try {
     const guide = await Guides.findById(id);
-    
+
     if (guide){
       next();
     } else {

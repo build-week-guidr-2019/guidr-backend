@@ -28,9 +28,9 @@ async function add(guide) {
 }
 
 //used for endpoint where it's a PUT for /api/guides/:id
-async function update(id, guide) {
-    const [new_id] = await db('guides').update(guide).where({id});
-    return findById(new_id);
+async function update(id, changes) {
+   await db('guides').where('id', id).update(changes);
+   return findById(id);
 }
 
 
