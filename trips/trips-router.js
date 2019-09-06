@@ -52,7 +52,7 @@ router.put('/:id', validTripID, async (req, res) =>{
 router.delete('/:id', validTripID, async (req,res) => {
     try {
         let tripID = req.params.id;
-        //const deletionAttempt = await Trips.delete(tripID);
+        const deletionAttempt = await Trips.remove(tripID);
     } catch(err){
         res.status(403).json({message:"Cannot delete", errMessage:err})
     }
@@ -76,5 +76,7 @@ async function validTripID (req, res, next){
     res.status(500).json({message:"cannot validate", errMessage:err})
   }
 }
+
+//NEEDED validate whether trip has all the correct parameters
 
 module.exports = router;

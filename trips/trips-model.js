@@ -36,7 +36,7 @@ async function update(id, changes) {
 
 
 //used for endpoint where it's a DELETE for /api/trips/1
-function remove(){
+function remove(id){
     return db('trips').where('id',id).del();
 }
 
