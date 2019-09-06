@@ -53,6 +53,7 @@ router.delete('/:id', validTripID, async (req,res) => {
     try {
         let tripID = req.params.id;
         const deletionAttempt = await Trips.remove(tripID);
+        res.status(200).json({message:"Trip deleted successfully"})
     } catch(err){
         res.status(403).json({message:"Cannot delete", errMessage:err})
     }
