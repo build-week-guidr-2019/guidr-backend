@@ -7,6 +7,7 @@ const helmet = require('helmet');
 //Routers
 const guidesRouter = require('../guides/guides-router.js');
 const authRouter = require('../auth/auth-router.js');
+const tripRouter = require('../trips/trips-router.js')
 
 
 const server = express();
@@ -19,6 +20,7 @@ server.use(express.json());
 //Routes
 server.use('/api/guides', guidesRouter);
 server.use('/api/login', authRouter);
+server.use('/api/trips',tripRouter);
 
 
 //added this to test that server was running.
