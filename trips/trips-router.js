@@ -78,6 +78,6 @@ async function validTripID (req, res, next){
   }
 }
 
-//NEEDED validate whether trip has all the correct parameters
+//NEEDED validate whether trip (to be added) has all the correct parameters
 
 module.exports = router;
