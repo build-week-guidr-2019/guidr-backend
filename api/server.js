@@ -4,11 +4,19 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
+//Routers
+const guidesRouter = require('../guides/guides-router.js');
+
+
 const server = express();
 
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
+
+
+//Routes
+server.use('/api/guides', guidesRouter);
 
 
 //added this to test that server was running.
