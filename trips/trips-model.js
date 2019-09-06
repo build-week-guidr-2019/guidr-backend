@@ -5,7 +5,8 @@ module.exports = {
   find,
   findBy,
   findById,
-  update
+  update,
+  remove
 };
 
 
@@ -34,9 +35,16 @@ async function update(id, changes) {
 }
 
 
+//used for endpoint where it's a DELETE for /api/trips/1
+function remove(){
+    return db('trips').where('id',id).del();
+}
+
 //used for endpoint where it's /api/trips/:id
 function findById(id) {
   return db('trips')
     .where({id})
     .first();
 }
+
+

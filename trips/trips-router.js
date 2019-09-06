@@ -29,8 +29,6 @@ router.get('/:id', validTripID, async (req,res) => {
 })
 
 
-
-
 //POST trip 
 
 
@@ -49,6 +47,16 @@ router.put('/:id', validTripID, async (req, res) =>{
     res.status(403).json({message:"Cannot update ", errMessage:err})
   }
 });
+
+// DELETE trip
+router.delete('/:id', validTripID, async (req,res) => {
+    try {
+        let tripID = req.params.id;
+        //const deletionAttempt = await Trips.delete(tripID);
+    } catch(err){
+        res.status(403).json({message:"Cannot delete", errMessage:err})
+    }
+})
 
 
 
