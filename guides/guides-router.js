@@ -46,9 +46,9 @@ router.get('/:id/trips', validGuideID, async (req,res)=>{
 
 
 
-//POST guide 
+//POST/Register guide 
 
-router.post('/', validGuide, async (req,res) => {
+router.post('/register', validGuide, async (req,res) => {
   try {
     let newGuide = req.body;
     
