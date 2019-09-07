@@ -4,7 +4,8 @@ const router = require('express').Router();
 
 const Types = require('./types-model.js');
 
-//const validate = require( shared validation middleware)
+//Authentication middleware
+const validate = require('../auth/auth-middleware');
 
 router.get('/', async (req, res) =>{
   try {
@@ -30,7 +31,7 @@ router.get('/:id', validTypeID, async (req,res) => {
 
 
 //POST type 
-router.post('/', validType, async (req,res) => {
+router.post('/', validate, validType, async (req,res) => {
     try {
       let newType = req.body;
     
@@ -62,8 +63,12 @@ async function validTypeID (req, res, next){
 }
 
 //NEEDED validate whether type has all the correct parameters before it is added
-async function validType (req, res, next){
-    next();
+function validType (req, res, next){
+    if (!req.body.type){
+      res.status(404).json({message:"Type is missing some data"});
+    } else {
+      next();
+    }
 }
 
 module.exports = router;

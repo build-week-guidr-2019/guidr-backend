@@ -1,5 +1,6 @@
 const db = require('../database/dbConfig.js');
 
+
 module.exports = {
   add,
   find,
@@ -22,6 +23,7 @@ function find() {
         'guides.username as GuideName', 
         'trips.title',
         'trips.description',
+        'trips.professional',
         'types.type',
         'trips.duration',
         'trips.date');
@@ -60,6 +62,7 @@ function findById(id) {
         'guides.username as GuideName', 
         'trips.title',
         'trips.description',
+        'trips.professional',
         'types.type',
         'trips.duration',
         'trips.date')
