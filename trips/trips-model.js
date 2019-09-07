@@ -22,7 +22,6 @@ function find() {
         'guides.username as GuideName', 
         'trips.title',
         'trips.description',
-        
         'types.type',
         'trips.duration',
         'trips.date');
@@ -55,8 +54,18 @@ function remove(id){
 //used for endpoint where it's /api/trips/:id
 function findById(id) {
   return db('trips')
-    .where({id})
+    .join('guides', 'guides.id', 'trips.guide_id')
+    .join('types', 'types.id', 'trips.type_id')
+    .select('trips.id as TripID',
+        'guides.username as GuideName', 
+        'trips.title',
+        'trips.description',
+        'types.type',
+        'trips.duration',
+        'trips.date')
+    .where('trips.id', id)
     .first();
+    
 }
 
 
