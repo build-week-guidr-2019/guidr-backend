@@ -23,7 +23,7 @@ describe('testing server.js', ()=> {
         it('should get you a token and let you login', async ()=>{
             const res = await request(server).post('/api/login').send({ username: 'moriarty', password: 'sherlock'});
             token = res.body.token;
-            console.log('this is the token',token);
+            //console.log('this is the token',token);
             expect(res.status).toBe(200);
         })
       
@@ -64,8 +64,10 @@ describe('testing server.js', ()=> {
         });
     });
 
-    describe('POST to Trips, Types, Guides failure and success', ()=>{
-        it('make a successful trip post, payload has all components; should return 201 OK', async () =>{
+    describe('POST to Trips and Types failure and success', ()=>{
+        
+        it('should POST to trips, payload has all components; should return 201 OK', async () =>{
+
             const trip = {
                 guide_id:1,
                 title:"Test Trip",
@@ -73,13 +75,84 @@ describe('testing server.js', ()=> {
                 professional:false,
                 type_id: 1,
                 duration:555,
-                date:""
+                date:"01/01/2525"
             }
+
             const res = await request(server).post('/api/trips').send(trip).set('Authorization', token);
             expect(res.status).toBe(201);
+        });
+
+
+        it('should try to POST to trips but fail because payload has missing components, should return 404', async () => {
+        
+            const brokenTrip = {
+                guide_id:1,
+                description:"Test Description",
+                professional:false,
+                type_id: 1,
+                duration:555,
+                date:"01/01/2525"
+            }
+
+            const res = await request(server).post('/api/trips').send(brokenTrip).set('Authorization', token);
+            expect(res.status).toBe(404);
+
+
         })
 
-    })
+
+        it('should POST to types and should return return 201 ok', async () => {
+
+            const type = {
+                type:"Sherlock Holmes Adventure",
+                description:"Solving a mystery with the world's greatest detective!"
+            }
+
+            const res = await request(server).post('/api/types').send(type).set('Authorization', token);
+            expect(res.status).toBe(201);
+
+        });
+
+
+        it('should try POST to types but fail and return 404; missing type field', async () => {
+
+            const brokenType = {
+
+                description:"Solving a mystery with the world's greatest detective!"
+            }
+
+            const res = await request(server).post('/api/types').send(brokenType).set('Authorization', token);
+            expect(res.status).toBe(404);
+
+        });
+
+
+    });
+
+    /*
+    Unable to get DELETE endpoint test to work. 
+    */
+    // describe('DELETE request for trips', ()=> {
+    //     it('should create trip (successful POST) and then delete it', async ()=> {
+    //         const trip = {
+    //             guide_id:1,
+    //             title:"Test Trip",
+    //             description:"Test Description",
+    //             professional:false,
+    //             type_id: 1,
+    //             duration:555,
+    //             date:"01/01/2525"
+    //         }
+
+    //         await request(server).post('/api/trips').send(trip).set('Authorization', token);
+    //         const res = await request(server).delete('api/trips/1').set('Authorization', token);
+    //         expect(res.status).toBe(200);
+
+    //     })
+
+    // })
+
+  
 
 
  
