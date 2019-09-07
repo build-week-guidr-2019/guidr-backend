@@ -13,7 +13,19 @@ module.exports = {
 //used for endpoint where it's GET for /api/trips
 function find() {
   //should give you every trip
-  return db('trips');
+
+  //db('trips').join('guides', 'guides.id', 'trips.guide_id')
+  return db('trips')
+        .join('guides', 'guides.id', 'trips.guide_id')
+        .join('types', 'types.id', 'trips.type_id')
+        .select('trips.id as TripID',
+        'guides.username as GuideName', 
+        'trips.title',
+        'trips.description',
+        
+        'types.type',
+        'trips.duration',
+        'trips.date');
 }
 
 function findBy(filter) {

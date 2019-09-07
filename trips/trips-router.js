@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
-
+//auth middleware
+const restricted = require('../auth/auth-middleware.js');
 
 const Trips = require('./trips-model.js');
 
@@ -89,11 +90,15 @@ async function validTripID (req, res, next){
   }
 }
 
-
-
-//NEEDED validate whether trip (to be added) has all the correct parameters
-async function validTrip (req, res, next){
-    next();
+//validate whether trip (to be added) has all the correct parameters
+function validTrip (req, res, next){
+    //if (!req.body.guide_id || !req.body.title || !req.body.description || req.body.professional === null || !req.body.type_id || !req.body.duration || !req.body.date){
+    if(Object.values(req.body).length < 7){
+        res.status(404).json({message: 'Trip is missing some data'});
+    } else {
+        next();
+    }
+    
 }
 
 module.exports = router;

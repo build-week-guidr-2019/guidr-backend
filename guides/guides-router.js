@@ -88,6 +88,8 @@ async function validGuide( req, res, next) {
   try{
     if (username && password){
       next();
+
+      //A non-implemented test to see if a guide with such username already exists
       // console.log("inside if")
       // const existingGuide = await Guides.findBy(usermame);
       
