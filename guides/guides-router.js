@@ -4,6 +4,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const secrets = require('../config/secrets.js')
 
+//Authentication middleware
+const validate = require('../auth/auth-middleware');
+
 const Guides = require('./guides-model.js');
 
 //const validate = require( shared validation middleware)
@@ -65,7 +68,7 @@ router.post('/register', validGuide, async (req,res) => {
 
 //PUT endpoint only tagline, age, experience 
 
-router.put('/:id', validGuideID, async (req, res) =>{
+router.put('/:id', validate, validGuideID, async (req, res) =>{
   try {
     let guideInfo = req.body;
     let guideID = req.params.id;
