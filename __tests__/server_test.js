@@ -129,6 +129,27 @@ describe('testing server.js', ()=> {
 
     });
 
+
+    // describe('GET request for trip by id', ()=> {
+    //     it('should create trip (successful POST) get it', async ()=> {
+    //         const trip = {
+    //             guide_id:1,
+    //             title:"Test Trip",
+    //             description:"Test Description",
+    //             professional:false,
+    //             type_id: 1,
+    //             duration:555,
+    //             date:"01/01/2525"
+    //         }
+
+    //         let res = await request(server).post('/api/trips').send(trip).set('Authorization', token);
+    //         res = await request(server).get('api/trips/').set('Authorization', token);
+    //         expect(res.status).toBe(200);
+
+    //     })
+
+    // })
+
     /*
     Unable to get DELETE endpoint test to work. 
     */
