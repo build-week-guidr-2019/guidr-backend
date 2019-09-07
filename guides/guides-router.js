@@ -32,6 +32,17 @@ router.get('/:id', validGuideID, async (req,res) => {
 
 //get the trips for a guide given ID
 
+router.get('/:id/trips', validGuideID, async (req,res)=>{
+  try{
+    const guideID = req.params.id;
+    const guidesTrips = await Guides.findTrips(guideID);
+    res.status(200).json(guidesTrips);
+  }
+  catch(err){
+    res.status(500).json({message:"Trouble getting guide's trips", errMessage:err});
+  }
+})
+
 
 
 
@@ -102,7 +113,7 @@ async function validGuideID (req, res, next){
     if (guide){
       next();
     } else {
-      res.status(401).json({message:"User does not exist!"});
+      res.status(401).json({message:"That guide does not exist!"});
     }
   } catch (err) {
     res.status(500).json({message:"cannot validate", errMessage:err})
