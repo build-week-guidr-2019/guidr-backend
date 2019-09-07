@@ -5,7 +5,8 @@ module.exports = {
   find,
   findBy,
   findById,
-  update
+  update,
+  findTrips
 };
 
 
@@ -39,4 +40,10 @@ function findById(id) {
   return db('guides')
     .where({id})
     .first();
+}
+
+//used for endpoint where it's /api/guides/:id/trips
+
+async function findTrips(id) {
+  return await db('trips').where('trips.guide_id', id);
 }

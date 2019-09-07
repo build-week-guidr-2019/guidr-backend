@@ -19,6 +19,15 @@
     `/:id/trips`--> guide's trips (gets trips)
 
 
+## Trips
+`/api/trips` --> post, get
+`/api/trips/:id`-->get, put, delete
+
+## Types
+`/api/types` --> GET, POST
+`/api/types/:id` --> GET
+
+
 
 
 
