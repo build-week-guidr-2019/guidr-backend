@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-//auth middleware
-const restricted = require('../auth/auth-middleware.js');
+//Authentication middleware
+const validate = require('../auth/auth-middleware');
 
 const Trips = require('./trips-model.js');
 
@@ -31,7 +31,7 @@ router.get('/:id', validTripID, async (req,res) => {
 
 
 //POST trip 
-router.post('/', validTrip, async (req,res) => {
+router.post('/', validate, validTrip, async (req,res) => {
     try {
       let newTrip = req.body;
     
@@ -46,7 +46,7 @@ router.post('/', validTrip, async (req,res) => {
 
 
 //PUT TRIP
-router.put('/:id', validTripID, async (req, res) =>{
+router.put('/:id', validate, validTripID, async (req, res) =>{
   try {
     let tripInfo = req.body;
     let tripID = req.params.id;
@@ -61,7 +61,7 @@ router.put('/:id', validTripID, async (req, res) =>{
 });
 
 // DELETE trip
-router.delete('/:id', validTripID, async (req,res) => {
+router.delete('/:id', validate, validTripID, async (req,res) => {
     try {
         let tripID = req.params.id;
         const deletionAttempt = await Trips.remove(tripID);
