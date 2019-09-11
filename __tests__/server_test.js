@@ -16,14 +16,16 @@ describe('testing server.js', ()=> {
         await db('trips').truncate();
         await db('types').truncate();
         await db('guides').truncate();
-    })
+        console.log('db cleared');
+    });
+
 
     describe('test login and getting a token',  () => {
 
         it('should get you a token and let you login', async ()=>{
             const res = await request(server).post('/api/login').send({ username: 'moriarty', password: 'sherlock'});
             token = res.body.token;
-            //console.log('this is the token',token);
+            console.log('this is the token',token);
             expect(res.status).toBe(200);
         })
       
@@ -131,19 +133,11 @@ describe('testing server.js', ()=> {
 
 
     // describe('GET request for trip by id', ()=> {
-    //     it('should create trip (successful POST) get it', async ()=> {
-    //         const trip = {
-    //             guide_id:1,
-    //             title:"Test Trip",
-    //             description:"Test Description",
-    //             professional:false,
-    //             type_id: 1,
-    //             duration:555,
-    //             date:"01/01/2525"
-    //         }
+    
 
-    //         let res = await request(server).post('/api/trips').send(trip).set('Authorization', token);
-    //         res = await request(server).get('api/trips/').set('Authorization', token);
+    //     it('should create trip (successful POST) get it', async ()=> {
+    //         const res = request(server).get('/api/trips');
+    //         console.log(res.body);
     //         expect(res.status).toBe(200);
 
     //     })
