@@ -8,6 +8,13 @@ exports.up = function(knex) {
           tbl.integer('age');
           tbl.integer('experience');
       })
+
+      .createTable('types', tbl => {
+        tbl.increments('id');
+        tbl.string('type' , 100)
+            .notNullable();
+        tbl.string('description', 128);
+    })
       .createTable('trips', tbl => {
           tbl.increments('id');
           tbl.integer('guide_id')
@@ -31,12 +38,6 @@ exports.up = function(knex) {
           tbl.date('date').notNullable();   
       })
 
-      .createTable('types', tbl => {
-          tbl.increments('id');
-          tbl.string('type' , 100)
-              .notNullable();
-          tbl.string('description', 128);
-      })
     );
   };
   
