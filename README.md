@@ -2,12 +2,7 @@
 
 ## Notes:
 
-## MVP
-
-### API MVPI
-
-
-## Endpoints
+See documentation: [https://documenter.getpostman.com/view/8256532/SVmr11Pg?version=latest#intro](https://documenter.getpostman.com/view/8256532/SVmr11Pg?version=latest#intro)
 
 ## Auth Endpoints
 `/api/login`--> Logins
